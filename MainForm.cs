@@ -719,7 +719,8 @@ namespace Sharp_Clean_bin_obj
                 }
             }
 
-            folderImageList.Images.Add("folder", folderIcon ?? SystemIcons.WinLogo);
+            Bitmap folderBitmap = (folderIcon ?? SystemIcons.WinLogo).ToBitmap();
+            folderImageList.Images.Add("folder", folderBitmap);
             folderIcon?.Dispose();
         }
 

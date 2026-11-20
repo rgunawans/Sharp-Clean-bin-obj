@@ -53,7 +53,10 @@ namespace Sharp_Clean_bin_obj
                 {
                     token.ThrowIfCancellationRequested();
                     int scanned = Interlocked.Increment(ref directoriesScanned);
-                    progress?.Report(new ScanProgress(parent.FullPath, scanned, Volatile.Read(ref artifactsFound)));
+                    if ((scanned & 15) == 1)
+                    {
+                        progress?.Report(new ScanProgress(parent.FullPath, scanned, Volatile.Read(ref artifactsFound)));
+                    }
 
                     foreach (string childPath in EnumerateDirectories(parent.FullPath))
                     {
